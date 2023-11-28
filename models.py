@@ -11,7 +11,7 @@ class Lojista(Base):
     cpf_cnpj = Column(String, nullable=False, unique=True, index=True)
     email = Column(String, unique=True, index=True, nullable=False)
     senha = Column(String, nullable=False)
-    saldo = Column(Numeric, default=True)
+    saldo = Column(Numeric)
 
     transacoes = relationship("Transacao", back_populates="recebedor")
 
@@ -23,7 +23,7 @@ class Usuario(Base):
     cpf_cnpj = Column(String, nullable=False, unique=True, index=True)
     email = Column(String, unique=True, index=True, nullable=False)
     senha = Column(String, nullable=False)
-    saldo = Column(Numeric, default=True)
+    saldo = Column(Numeric)
 
     transacoes = relationship("Transacao", back_populates="pagador")
 
@@ -32,7 +32,7 @@ class Transacao(Base):
     __tablename__ = "transacoes"
 
     id_transacao = Column(Integer, primary_key=True, index=True)
-    valor_transacao = Column(Numeric, default=True, nullable=False)
+    valor_transacao = Column(Numeric, nullable=False)
     
     id_pagador = Column(Integer, ForeignKey("usuarios.id_usuario"))
 
