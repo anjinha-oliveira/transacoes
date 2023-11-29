@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 
 class LojistaBase(BaseModel):
-    id_lojista: int
     nome: str
     cpf_cnpj: str
     email: str
@@ -9,10 +8,11 @@ class LojistaBase(BaseModel):
     saldo: float
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
-class LojistaCreate(LojistaBase):
-    pass
+class LojistaRead(LojistaBase):
+    id_lojista: int
+
 
 class UsuarioBase(BaseModel):
     id_usuario: int
@@ -23,7 +23,7 @@ class UsuarioBase(BaseModel):
     saldo: float
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class UsuarioCreate(UsuarioBase):
     pass
@@ -35,7 +35,7 @@ class TransacaoBase(BaseModel):
     id_recebedor:  int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class TransacaoCreate(TransacaoBase):
     pass
