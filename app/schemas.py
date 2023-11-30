@@ -15,7 +15,6 @@ class LojistaRead(LojistaBase):
 
 
 class UsuarioBase(BaseModel):
-    id_usuario: int
     nome: str
     cpf_cnpj: str
     email: str
@@ -25,8 +24,8 @@ class UsuarioBase(BaseModel):
     class Config:
         from_attributes = True
 
-class UsuarioCreate(UsuarioBase):
-    pass
+class UsuarioRead(UsuarioBase):
+    id_usuario: int
 
 class TransacaoBase(BaseModel):
     id_transacao: int
