@@ -15,15 +15,16 @@ def get_db():
 
 app = FastAPI()
 
+db_fake = {
+    "nome": "Angela Lucia",
+    "cpf_cnpj": "000.123.000-99",
+    "email": "angelalucia@gmail.com",
+    "senha": "lucia",
+    "saldo": "2000"
+}
 
 @app.post("/lojista/", response_model=schemas.LojistaBase)
-def criar_lojista(user: schemas.LojistaBase, db: SessionLocal = Depends(get_db)):
-    db_lojista_email = crud.get_lojista_por_email(db, email=user.email)
-    db_lojista_cpf_cnpj = crud.get_lojista_por_cpf_cnpj(db, cpf_cnpj=user.cpf_cnpj)
-    if db_lojista_email:
-        raise HTTPException(status_code=400, detail="Email de lojista já está registrado")
-    elif db_lojista_cpf_cnpj:
-        raise HTTPException(status_code=400, detail="CPF ou CNPJ de lojista já está registrado")
+def criar_lojista(user: schemas.LojistaBase, db: SessionLocal = Depends(get_db)):    
     return crud.criar_lojista(db=db, user=user)
 
 @app.post("/usuario/", response_model=schemas.UsuarioBase)
