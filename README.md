@@ -7,10 +7,16 @@ Esse projeto consiste em criar um sistema onde usuários comuns e lojistas podem
 * Python3
 * SQLite
 * SQLAlchemy
+* Pytest
 * Postman
 
 ## Rodar o programa
 
 ```sh
 $ python3 -m uvicorn app.main:app --reload --port 8080 
+```
+## Rodar testes
+
+```sh
+$ python3 -m pytest -v
 ```
