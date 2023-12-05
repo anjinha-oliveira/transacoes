@@ -29,11 +29,5 @@ def criar_lojista(user: schemas.LojistaBase, db: SessionLocal = Depends(get_db))
 
 @app.post("/usuario/", response_model=schemas.UsuarioBase)
 def criar_usuario(user: schemas.UsuarioBase, db: SessionLocal = Depends(get_db)):
-    db_usuario_email = crud.get_usuario_por_email(db, email=user.email)
-    db_usuario_cpf_cnpj = crud.get_usuario_por_cpf_cnpj(db, cpf_cnpj=user.cpf_cnpj)
-    if db_usuario_email:
-        raise HTTPException(status_code=400, detail="Email de usuario já está registrado")
-    elif db_usuario_cpf_cnpj:
-        raise HTTPException(status_code=400, detail="CPF ou CNPJ de usuario já está registrado")
     return crud.criar_usuario(db=db, user=user)
 
