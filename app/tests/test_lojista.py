@@ -79,11 +79,27 @@ def test_garante_que_nao_recebe_cpf_cnpj_vazio():
     }
 
 
-
-
-
-
-
-
-
-
+def test_garante_que_nao_recebe_email_vazio():
+    response = client.post(
+        "/lojista/",
+        json={
+            "nome": "Fernando teofilo",
+            "cpf_cnpj": "000.000.999-00",
+            "email": "",
+            "senha": "fernando",
+            "saldo": "2000",
+        },
+    )
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "string_too_short",
+                "loc": ["body", "email"],
+                "msg": "String should have at least 10 characters",
+                "input": "",
+                "ctx": {"min_length": 10},
+                "url": "https://errors.pydantic.dev/2.5/v/string_too_short",
+            }
+        ]
+    }

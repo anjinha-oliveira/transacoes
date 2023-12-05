@@ -31,3 +31,4 @@ def criar_lojista(user: schemas.LojistaBase, db: SessionLocal = Depends(get_db))
 def criar_usuario(user: schemas.UsuarioBase, db: SessionLocal = Depends(get_db)):
     return crud.criar_usuario(db=db, user=user)
 
+
