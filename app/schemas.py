@@ -18,8 +18,8 @@ class UsuarioBase(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     nome: str
-    cpf_cnpj: str
-    email: str
+    cpf_cnpj: constr(min_length=14, max_length=18)
+    email: constr(min_length=10, max_length=30)
     senha: str
     saldo: float
 
