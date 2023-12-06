@@ -31,11 +31,10 @@ class UsuarioRead(UsuarioBase):
 class TransacaoBase(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
-    id_transacao: int
     valor_transacao: float
     id_pagador:  int
     id_recebedor:  int
 
 
 class TransacaoCreate(TransacaoBase):
-    pass
+    id_transacao: int

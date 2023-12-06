@@ -58,11 +58,11 @@ def test_garante_criacao_de_transacao(test_db):
     lojista = criar_lojista(db=test_db, user=user)
     assert lojista.id_lojista
 
-    user = TransacaoBase(
-        id_transacao=1,
+    transacao = TransacaoBase(
         valor_transacao=20,
-        id_pagador=usuario.id_usuario,
-        id_recebedor=lojista.id_lojista,
+        id_pagador=1,
+        id_recebedor=1,
     )
-    transacao = criar_transacao(db=test_db, user=user)
+    transacao = criar_transacao(db=test_db, transacao=transacao)
     assert transacao.id_transacao
+    

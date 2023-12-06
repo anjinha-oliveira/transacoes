@@ -42,3 +42,15 @@ def criar_usuario(db: Session, user: schemas.UsuarioBase):
     db.commit()
     db.refresh(db_usuario)
     return db_usuario
+
+def criar_transacao(db: Session, transacao: schemas.TransacaoBase):
+    db_transacao = models.Transacao(
+        valor_transacao=transacao.valor_transacao,
+        id_pagador=transacao.id_pagador,
+        id_recebedor=transacao.id_recebedor
+    )
+
+    db.add(db_transacao)
+    db.commit()
+    db.refresh(db_transacao)
+    return db_transacao
