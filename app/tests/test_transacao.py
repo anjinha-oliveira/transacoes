@@ -63,6 +63,17 @@ def test_garante_criacao_de_transacao(test_db):
         id_pagador=1,
         id_recebedor=1,
     )
-    transacao = criar_transacao(db=test_db, transacao=transacao)
-    assert transacao.id_transacao
-    
+    response = client.post(
+        "/transacao/{cpf_cnpj}/",
+        json={
+            "valor_transacao": 20,
+            "id_pagador": 1,
+            "id_recebedor": 1
+        }
+    )
+    assert response.status_code == 200
+    assert response.json() == {
+        "valor_transacao": 20,
+        "id_pagador": 1,
+        "id_recebedor": 1
+    }
