@@ -83,11 +83,13 @@ def test_garante_que_nao_recebe_email_vazio():
     response = client.post(
         "/lojista/",
         json={
-            "nome": "Fernando teofilo",
-            "cpf_cnpj": "000.000.999-00",
-            "email": "",
-            "senha": "fernando",
-            "saldo": "2000",
+            
+                "nome": "Fernando teofilo",
+                "cpf_cnpj": "000.000.999-00",
+                "email": "",
+                "senha": "fernando",
+                "saldo": "2000",
+            
         },
     )
     assert response.status_code == 422

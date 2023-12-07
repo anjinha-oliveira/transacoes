@@ -34,3 +34,4 @@ def criar_usuario(user: schemas.UsuarioBase, db: SessionLocal = Depends(get_db))
 @app.post("/transacao/{cpf_cnpj}/", response_model=schemas.TransacaoBase)
 def criar_trasacao(transacao: schemas.TransacaoBase, db: SessionLocal = Depends(get_db)):
     return crud.criar_transacao(db=db, transacao=transacao)
+

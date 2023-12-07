@@ -54,3 +54,5 @@ def criar_transacao(db: Session, transacao: schemas.TransacaoBase):
     db.commit()
     db.refresh(db_transacao)
     return db_transacao
+
+

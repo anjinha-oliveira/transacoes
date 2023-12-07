@@ -39,9 +39,8 @@ def test_garante_que_criacao_de_usuario():
             "cpf_cnpj": "000.099.000-99",
             "email": "fernandoteofilo@gmail.com",
             "senha": "fernando",
-            "saldo": 2000.0
-
-        }
+            "saldo": 2000.0,
+        },
     )
     assert response.status_code == 200
     assert response.json() == {
@@ -49,5 +48,57 @@ def test_garante_que_criacao_de_usuario():
         "cpf_cnpj": "000.099.000-99",
         "email": "fernandoteofilo@gmail.com",
         "senha": "fernando",
-        "saldo": 2000.0
+        "saldo": 2000.0,
+    }
+
+
+def test_garante_que_nao_recebe_cpf_cnpj_vazio():
+    response = client.post(
+        "/usuario/",
+        json={
+            "nome": "Fernando teofilo",
+            "cpf_cnpj": "",
+            "email": "fernandoteofilo@gmail.com",
+            "senha": "fernando",
+            "saldo": "2000",
+        },
+    )
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "string_too_short",
+                "loc": ["body", "cpf_cnpj"],
+                "msg": "String should have at least 14 characters",
+                "input": "",
+                "ctx": {"min_length": 14},
+                "url": "https://errors.pydantic.dev/2.5/v/string_too_short",
+            }
+        ]
+    }
+
+
+def test_garante_que_nao_recebe_email_vazio():
+    response = client.post(
+        "/usuario/",
+        json={
+            "nome": "Fernando teofilo",
+            "cpf_cnpj": "000.000.999-98",
+            "email": "",
+            "senha": "fernando",
+            "saldo": "2000",
+        },
+    )
+    assert response.status_code == 422
+    assert response.json() == {
+        "detail": [
+            {
+                "type": "string_too_short",
+                "loc": ["body", "email"],
+                "msg": "String should have at least 10 characters",
+                "input": "",
+                "ctx": {"min_length": 10},
+                "url": "https://errors.pydantic.dev/2.5/v/string_too_short",
+            }
+        ]
     }
