@@ -36,5 +36,5 @@ class TransacaoBase(BaseModel):
     id_recebedor:  int
 
 
-class TransacaoCreate(TransacaoBase):
+class TransacaoRead(TransacaoBase):
     id_transacao: int
